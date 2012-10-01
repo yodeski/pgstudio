@@ -1,0 +1,117 @@
+{
+  "data": [
+    {
+      "id":1,
+      "itemname": "dashboard",
+      "text": "My Dashboard",
+      "ref": "dashboard",
+      "color": "#000",
+      "icon": "icon-dashboard",
+      "source": "submit",
+      "active" : false,
+      "toolbar": []
+    },
+    {
+      "id":2,
+      "itemname": "mytables",
+      "text": "My tables",
+      "ref": "mytables",
+      "color": "#000",
+      "hovercolor": "#b200ff",
+      "icon": "icon-table",
+      "source": "popover",
+        "active" : false,
+        "toolbar": [
+          {
+            "toolicon":"icon-upload-alt",
+            "url": "#loginform",
+            "tip": "Upload your data to your database"
+          }
+      ]
+    },
+    {
+      "id":3,
+      "itemname": "myviews",
+      "text": "My Views",
+      "ref": "mytables",
+      "color": "#000",
+      "hovercolor": "#b200ff",
+      "icon": "icon-hdd",
+      "source": "popover",
+        "active" : false,
+        "toolbar": [
+          {
+            "toolicon":"icon-magic",
+            "url": "#loginform",
+            "tip": "Design your customs views from existing tables"
+          }
+      ]
+    },
+    {
+      "id":4,
+      "itemname": "myfunctions",
+      "text": "My functions",
+      "ref": "myfunctions",
+      "color": "#000",
+      "hovercolor": "#ff6a00",
+      "icon": "icon-bolt",
+      "source": "popover",
+        "active" : false,
+        "toolbar": [
+          {
+            "toolicon":"icon-bolt",
+            "url": "#loginform",
+            "tip": "Create user-defined functions to manage your data"
+          }
+      ]
+    },
+    {
+      "id":5,
+      "itemname": "myshares",
+      "text": "My shares",
+      "ref": "myshares",
+      "color": "#000",
+      "hovercolor": "#ff6a00",
+      "icon": "icon-share",
+      "source": "submit",
+        "active" : false,
+      "toolbar": []
+    },
+    {
+      "id":6,
+      "itemname": "myconfiguration",
+      "text": "Configuration",
+      "ref": "configuration",
+      "color": "#000",
+      "hovercolor": "#05c21d",
+      "icon": "icon-cogs",
+      "source": "submit",
+        "active" : false,
+      "toolbar": []
+    },
+    {
+      "id":7,
+      "itemname": "myprofile",
+      "text": "My profile",
+      "ref": "profile",
+      "color": "#000",
+      "hovercolor": "#ff006e",
+      "icon": "icon-user",
+      "source": "submit",
+        "active" : false,
+      "toolbar": []
+    },
+    {
+      "id":8,
+      "itemname": "mywork",
+      "text": "Work in progress",
+      "ref": "mywork",
+      "color": "#000",
+      "hovercolor": "#ff006e",
+      "icon": "icon-tags",
+      "source": "submit",
+        "active" : false,
+      "toolbar": []
+    }
+  ]
+}
