@@ -30,14 +30,10 @@ app.register("sidebar-module", function(sandbox){
 				callback: this.bindItemClick
 			}]);
     		//TODO - Manejar menu y header con template
-    		$("#headerContainer").html(sandbox.fetchTemplate('assets/js/templates/header', []));	
+    		$("#maincontainer").append(sandbox.fetchTemplate('assets/js/templates/header', []));
+            $("#maincontainer").append(sandbox.fetchTemplate('assets/js/templates/sidebar', []));
             this.getMenu();
 
-		},
-
-        //methods for functionality
-		handleEvent: function(e){
-    		this.bindItemClick(e.currentTarget)
 		},
 
         getMenu: function(){
@@ -55,8 +51,9 @@ app.register("sidebar-module", function(sandbox){
 			var leftmenu = sandbox.getElement({
 				selector: "#leftMenu"
 			});
-
+            
 			//loop over the returned json and display the elements
+            
 			if(this.MenuData.length>0){
 
 				for (var i = 0; i < this.MenuData.length; i++) {
@@ -69,11 +66,6 @@ app.register("sidebar-module", function(sandbox){
                     if(item.inControl=='popover')
                     	this.initPopOver($_li, item);
 
-        			// var self = this;
-           //          $_li.find('a').live('click', function(e) {
-           //          	self.bindItemClick($(this));	
-           //          });
-
                     sandbox.domManipulation([{
             			type: "append",
         				where: leftmenu,
@@ -82,6 +74,7 @@ app.register("sidebar-module", function(sandbox){
                     
 				}
 			}
+            
 		},
         //initialize the popover
         initPopOver: function(el, item) {
