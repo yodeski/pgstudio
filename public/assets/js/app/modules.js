@@ -15,6 +15,7 @@ app.register("sidebar-module", function(sandbox){
             this.ListSources = {};
             this.ListViews = {};
             this.ListFunctions = {};
+    		this.enumDBType = { table: "mytables", view: "myviews", sproc: "myfunctions" }; 
     		sandbox.setEvent({
 				type: "click",
 				parent: "#" + this.moduleId,
@@ -28,7 +29,8 @@ app.register("sidebar-module", function(sandbox){
 				context: this,
 				callback: this.bindItemClick
 			}]);
-
+    		//TODO - Manejar menu y header con template
+    		$("#headerContainer").html(sandbox.fetchTemplate('assets/js/templates/header', []));	
             this.getMenu();
 
 		},
@@ -67,10 +69,10 @@ app.register("sidebar-module", function(sandbox){
                     if(item.inControl=='popover')
                     	this.initPopOver($_li, item);
 
-        			var self = this;
-                    $_li.find('a').live('click', function(e) {
-                    	self.bindItemClick($(this));	
-                    });
+        			// var self = this;
+           //          $_li.find('a').live('click', function(e) {
+           //          	self.bindItemClick($(this));	
+           //          });
 
                     sandbox.domManipulation([{
             			type: "append",
@@ -94,7 +96,7 @@ app.register("sidebar-module", function(sandbox){
                 allow_multiple:false,
                 global_close: false,
                 //content: template,
-                onShown: function() { self.setToolsToPopOver(this, item, el) },
+                onShown: function() { self.setContentPopOver(this, item, el) },
                 onHide: function() { $('ul#leftMenu li').removeClass('active') }
             });
 
@@ -102,9 +104,9 @@ app.register("sidebar-module", function(sandbox){
        			
        			switch(item.ref)
        			{
-       				case "mytables": self.ListSources.data = data.objectList; break;
-       				case "myviews": self.ListViews.data = data.objectList; break;
-       				case "myfunctions": self.ListFunctions.data = data.objectList; break; 
+       				case self.enumDBType.table: self.ListSources.data = data.objectList; break;
+       				case self.enumDBType.view: self.ListViews.data = data.objectList; break;
+       				case self.enumDBType.sproc: self.ListFunctions.data = data.objectList; break; 
        			}
        			   			 
         	});           
@@ -112,10 +114,12 @@ app.register("sidebar-module", function(sandbox){
             $('.scrollbar').scrollbar();
         },
 
-	    setToolsToPopOver: function(pov, item, elem){
+	    setContentPopOver: function(pov, item, elem){
 	        var self = this;
-
-	        pov.$tip.find('.popover-content > *').html(this.appendSources(self.ListSources));
+	        var list=[];
+	        //Asign conten to POPOVER
+	        pov.$tip.find('.popover-content > *').html(this.appendSources(item.ref));
+	        $('.scrollbar').scrollbar();
 
 	        $('ul#leftMenu li').removeClass('active');
 	        elem.addClass('active');
@@ -132,16 +136,50 @@ app.register("sidebar-module", function(sandbox){
 
 	    },
 
-        appendSources: function(list){
+        appendSources: function(who){
 			var self = this;
 			var template = null;
-			if(!self.ListSources)
+			var pathTemplate = "";
+			var list = {};
+			var data = [];
+			var isRes = false;
+			if(!self.ListSources || !self.ListViews || !self.ListFunctions)
             {
-            	$.ajax({ url: "/" + item.ref, async: false }).then(function(data) {
-           			self.ListSources = data.objectList;
+            	$.ajax({ url: "/" + who, async: false }).then(function(data) {
+		 			list.data = data.objectList;
+		 			data = data.objectList;
+		 			isRes = true;
             	});
             }
-            template = sandbox.fetchTemplate('assets/js/templates/listSources', list); 
+ 			switch(who)
+   			{
+   				case self.enumDBType.table: 
+   				{
+   					if(isRes)
+   						self.ListSources.data 	= data;	
+   					else
+   						list.data = self.ListSources.data;
+   					pathTemplate ='assets/js/templates/listSources'; break;
+   				}
+   				case self.enumDBType.view:  
+   				{
+   					if(isRes)
+   						self.ListViews.data = data;	
+					else
+						list.data = self.ListViews.data;
+   					pathTemplate ='assets/js/templates/listView'; break;
+   				}
+   				case self.enumDBType.sproc:
+   				{
+   					if(isRes)
+   						self.ListFunctions.data = data;	
+   					else
+   						list.data = self.ListFunctions.data	
+   					pathTemplate ='assets/js/templates/listFunctions';break; 
+   				}
+   			}
+
+            template = sandbox.fetchTemplate(pathTemplate, list); 
 
             return template;          
 		},

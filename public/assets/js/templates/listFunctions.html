@@ -1,0 +1,43 @@
+
+<div id="divMyfunctions" class="navbar-text" style="text-align:left;">
+        <div class="accordion" id="accordionFunctions">
+            <div class="accordion-group">
+                <div class="accordion-heading lnh20">
+                    <a class="accordion-toggle nolink text-shadow" data-toggle="collapse" data-parent="#accordionFunctions" href="#collapseUDF">
+                        <i class="icon-asterisk"></i> User defined
+                    </a>
+                </div>
+                <div id="collapseUDF" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                        <ul id="lstPGF" class="nav nav-list scrollbar fff">
+                            <%  _.forEach(data, function(value) {
+                                if(value.Functype==="udf") { %>
+                                    <li><a><%= value.ObjectName %></a></li>
+                                <%}
+                            }); %>  
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-group">
+                <div class="accordion-heading lnh20">
+                    <a class="accordion-toggle nolink text-shadow" data-toggle="collapse" data-parent="#accordionFunctions" href="#collapsePGF">
+                        <i class="icon-minus"></i> Postgis functions
+                    </a>
+                </div>
+                <div id="collapsePGF" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                        <ul id="lstUDF" class="nav nav-list scrollbar fff">
+                            <%  _.forEach(data, function(value) {
+                                if(value.Functype === "postgis") { %>
+                                    <li><a><%= value.ObjectName %></a></li>
+                                <%}
+                            }); %>  
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+</div>
