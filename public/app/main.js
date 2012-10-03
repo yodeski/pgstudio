@@ -1,7 +1,6 @@
 require([
     // Application.
     "app",
-
     // Main Router.
     "router"
 ],

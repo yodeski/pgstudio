@@ -16,14 +16,14 @@ module.exports = function(site) {
     site.get('/mytables', function (req, res) {
         UserSource.getUserSources(site.config, 'yodeski@gmail.com', function(data) {
             res.send({ objectList: data.obj, error: data.error });
-      });  
+      });
     });
 
     site.get('/myfunctions', function (req, res) {
         UserFunction.getUserFunctions(site.config, 'yodeski@gmail.com', function(data) {
             res.send({ objectList: data.obj, error: data.error });
-    }); 
-      
+    });
+
   });
-  
+
 };

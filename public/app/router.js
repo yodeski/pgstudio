@@ -24,7 +24,6 @@ define([
 
             index: function() {
                 this.reset();
-
                 // Use the main layout.
                 app.useLayout("main").render();
             },
@@ -107,7 +106,8 @@ define([
 
             initialize: function() {
                 this.leftmenu = new LeftMenu.Collection();
-
+                this.usersources = new UserSource.Collection();
+                
                 this.users = new LeftMenu.Collection();
                 // Set up the users.
                 this.users = new User.Collection();

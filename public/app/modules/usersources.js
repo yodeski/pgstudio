@@ -18,13 +18,13 @@ define([
 
             parse: function(obj) {
                 if (!obj.error) {
-                    return obj.data;
+                    return obj.objectList;
                 }
                 return this.models;
             },
 
             initialize: function(models, options) {
-                this.fetch();
+                
             }
         });
 
@@ -36,6 +36,9 @@ define([
                 return {
                     model: this.model
                 };
+            },
+            initialize: function() {
+                this.model.on("change", this.render, this);
             }
         });
 

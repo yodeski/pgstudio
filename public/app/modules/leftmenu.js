@@ -9,7 +9,7 @@ define([
     function(app, Backbone, Bootstrap, UserSource) {
 
         var LeftMenu = app.module({
-            //objectList: []
+            objectList: []
         });
 
         LeftMenu.Collection = Backbone.Collection.extend({
@@ -40,75 +40,49 @@ define([
             },
 
             events: {
-                click: "initPopOver"
+                click: "showPopOver"
             },
 
             initPopOver: function() {
                 var item = this.model;
-                this.$el.siblings().removeClass("active");
-                this.$el.addClass("active");
-
+                this.$el.clickover({
+                    tip_id: item.get('itemname'),
+                    html: true,
+                    title: item.get('text'),
+                    trigger:'click',
+                    placement:'belowRight',
+                    allow_multiple:true,
+                    global_close: false,
+                    content: '',//this.getContent(model.objectList).render(),
+                    //onShown: function() { self.setToolsToPopOver(model, elem) },
+                    //onHide: function() { $('ul#leftMenu li').removeClass('active') }
+                });
+                //this.getContent().render();
                 //this.$el.clickover('show');
                 //alert(this.model.get('objectList'));
             },
-            /*initPopOver: function() {
-                var item = this.model;
-                $.get(item.get('ref'), function(d) {
-                    //$(d).find('.scrollbar').scrollbar();
-                    this.$el.clickover({
-                        tip_id: item.get('itemname'),
-                        html: true,
-                        title: item.get('text'),
-                        trigger:'click',
-                        placement:'belowRight',
-                        allow_multiple:false,
-                        global_close: false,
-                        content: d
-                        //onShown: function() { self.setToolsToPopOver(model, elem) },
-                        //onHide: function() { $('ul#leftMenu li').removeClass('active') }
-                    });
-                    el.clickover('show');
-                    //$('.scrollbar').scrollbar();
-                });
-            },*/
+            
             showPopOver: function(ev) {
-
+                this.$el.siblings().removeClass("active");
+                this.$el.addClass("active");
+                this.$el.clickover('show');
             },
 
             beforeRender: function() {
                 var url = this.model.get('ref');
                 var model = this.model;
-
                 //$.get(url, function(d) { model.set('objectList', d.objectList);});
 
             },
             afterRender:function() {
-                this.$el.siblings().removeClass("active");
-                var model = this.model;
-                var child_view = UserSource.Views;
-
-                this.$el.clickover({
-                    tip_id: model.get('itemname'),
-                    html: true,
-                    title: model.get('text'),
-                    trigger:'click',
-                    placement:'belowRight',
-                    allow_multiple:false,
-                    global_close: false,
-                    content: this.getContent(model.objectList),
-                    show: true
-                    //onShown: function() { self.setToolsToPopOver(model, elem) },
-                    //onHide: function() { $('ul#leftMenu li').removeClass('active') }
-                });
-
+                this.initPopOver();
             },
             getContent: function(sources) {
                 var objectList = new UserSource.Collection();
                 var cntview = new UserSource.Views.List({
+                    el: ".popover-content",
                     collection: objectList
                 });
-                return cntview;
-                /*this.insertView("ul", ).$el;*/
             }
         });
 
