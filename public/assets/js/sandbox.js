@@ -1,4 +1,7 @@
 //create the sandbox object
+
+var JST = window.JST = window.JST || {};
+
 Sandbox = function(Core){
 
     return {
@@ -103,7 +106,19 @@ Sandbox = function(Core){
 
 		toggle: function(data){
 			Core.Utils.toggle(data);
-		}
+		},
+        fetchTemplate: function(path, context) {
+            path = path + ".html";
+
+            if (!JST[path]) {
+                $.ajax({ url: "/" + path, async: false }).then(function(contents) {
+                    JST[path] = _.template(contents, context);
+                });
+            }
+
+            return JST[path];
+        }
+
 
 	};
 };

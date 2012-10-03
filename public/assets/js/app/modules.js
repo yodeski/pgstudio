@@ -7,10 +7,14 @@ app.register("sidebar-module", function(sandbox){
 	*/
 	return {
 		//init and destroy methods REQUIRED
+		objSource: {}, //objeto tabla/view
 		init: function(){
 			this.moduleId = "leftMenu";
 			this.el = sandbox.getElement({ selector:"#" + this.moduleId });
             this.MenuData = null;
+            this.ListSources = {};
+            this.ListViews = {};
+            this.ListFunctions = {};
     		sandbox.setEvent({
 				type: "click",
 				parent: "#" + this.moduleId,
@@ -60,31 +64,27 @@ app.register("sidebar-module", function(sandbox){
                     var $_li = $('<li id="itm_' + item.itemname + '" class="pointer" style="line-height:30px; color:' + item.color + '"><a idData="' + item.id + '" rel="' + relpop + '" href="' + href + '" class="text-shadow nolink" style="color:' + item.color + '"><i class="' + item.icon + ' icon-large text-shadow"></i>  <small style="font-size:12px;">' + item.text + '</small></a></li>');
 
                     //setup some events and define a callback
-                    //if(item.inControl=='popover')
-                    //    this.initPopOver($_li, item);
+                    if(item.inControl=='popover')
+                    	this.initPopOver($_li, item);
+
+        			var self = this;
+                    $_li.find('a').live('click', function(e) {
+                    	self.bindItemClick($(this));	
+                    });
 
                     sandbox.domManipulation([{
             			type: "append",
         				where: leftmenu,
         				what: $_li
         			}]);
-
-                    $_li.find('a').trigger('click');
+                    
 				}
 			}
 		},
         //initialize the popover
-        initPopOver: function(el) {
-			var item = this.MenuData[el.attr("idData")];
-            $.get(item.ref, function (data) {
-                // Make a model for each result and add it to the collection.
-                for (var i = 0; i < data.results.length; i++) {
-                    alert(data[i])
-                }
-            });
-        },
-        appendSources: function(res){
-            alert(res);
+        initPopOver: function(el, item) {
+            var self = this;
+
             el.clickover({
                 tip_id: item.itemname,
                 html: true,
@@ -93,22 +93,58 @@ app.register("sidebar-module", function(sandbox){
                 placement:'belowRight',
                 allow_multiple:false,
                 global_close: false,
-                content: "hola....", //d
-                //onShown: function() { self.setToolsToPopOver(item, elem) },
-                //onHide: function() { $('ul#leftMenu li').removeClass('active') }
+                //content: template,
+                onShown: function() { self.setToolsToPopOver(this, item, el) },
+                onHide: function() { $('ul#leftMenu li').removeClass('active') }
             });
-            $('.scrollbar').scrollbar();
-		},
-        bindItemClick: function(e){
-            var self = this;
-            $(e).live('click', function(e) {
-                $(this).clickover('show');
-                $(this).parent().siblings().removeClass("active");
-                $(this).parent().addClass("active");
-                self.initPopOver($(this));
-            });
-        }
 
+         	$.ajax({ url: "/" + item.ref, async: true }).then(function(data) {
+       			
+       			switch(item.ref)
+       			{
+       				case "mytables": self.ListSources.data = data.objectList; break;
+       				case "myviews": self.ListViews.data = data.objectList; break;
+       				case "myfunctions": self.ListFunctions.data = data.objectList; break; 
+       			}
+       			   			 
+        	});           
+
+            $('.scrollbar').scrollbar();
+        },
+
+	    setToolsToPopOver: function(pov, item, elem){
+	        var self = this;
+
+	        pov.$tip.find('.popover-content > *').html(this.appendSources(self.ListSources));
+
+	        $('ul#leftMenu li').removeClass('active');
+	        elem.addClass('active');
+	        var popheader = $("#" + item.itemname).find("h3");
+	        var toolbtn;
+	        if(item.toolbar.length > 0) {
+	            toolbtn = $('<div class="pull-right"><a href="#" class="text-shadow nolink" data-toggle="modal" data-target="#loginform" rel="tooltip" role="button" data-placement="right" title="' + item.toolbar[0].tip + '"><i class="' + item.toolbar[0].toolicon + ' "></i></a></div>');
+	            toolbtn.find('a[rel=tooltip]').tooltip();
+	        }
+	        popheader.append(toolbtn);
+	        $('a[data-target="#loginform"]').click(function(){
+	        	alert('open dialog');
+	        });
+
+	    },
+
+        appendSources: function(list){
+			var self = this;
+			var template = null;
+			if(!self.ListSources)
+            {
+            	$.ajax({ url: "/" + item.ref, async: false }).then(function(data) {
+           			self.ListSources = data.objectList;
+            	});
+            }
+            template = sandbox.fetchTemplate('assets/js/templates/listSources', list); 
+
+            return template;          
+		},
 
 	};
 });
