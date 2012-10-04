@@ -1,5 +1,6 @@
 var UserSource = require('../models/modelSources');
 var UserFunction = require('../models/modelUserFunctions');
+var UserShares = require('../models/modelUserShares');
 
 module.exports = function(site) {
 
@@ -23,6 +24,11 @@ module.exports = function(site) {
         UserFunction.getUserFunctions(site.config, 'yodeski@gmail.com', function(data) {
             res.send({ objectList: data.obj, error: data.error });
     });
+    
+    site.get('/myshares', function (req, res) {
+        UserShares.getUserShares(site.config, 'yodeski@gmail.com', function(data) {
+            res.send({ objectList: data.obj, error: data.error });
+    });    
 
   });
 

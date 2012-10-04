@@ -1,5 +1,5 @@
 var dacFactory = require('../dac/dac');
-var dacUserFunctions = require('../dac/dacUserFunctions');
+var dacUserSources = require('../dac/dacUserSources');
 
 var UserFunction = {
     ObjectName: '',
@@ -27,7 +27,7 @@ UserFunction.loadUserFunction = function (rows) {
 UserFunction.getUserFunctions = function (config, email, callback) {
 
     dacFactory.init(config, function (client) {
-        dacUserFunctions.getUserFunctions(client, email, function(data) {
+        dacUserSources.getUserFunctions(client, email, function(data) {
             UserFunction.loadUserFunction(data.rows);
             callback(data = { obj: UserFunctionsColl, error: data.error } );
         });

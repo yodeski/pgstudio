@@ -15,8 +15,11 @@ app.register("sidebar-module", function(sandbox){
             this.ListSources = {};
             this.ListViews = {};
             this.ListFunctions = {};
-    		this.enumDBType = { table: "mytables", view: "myviews", sproc: "myfunctions" }; 
-    		sandbox.setEvent({
+            this.ListShares = {};
+
+            this.enumDBType = { table: "mytables", view: "myviews", sproc: "myfunctions", shares: "myshares" }; 
+    		
+            sandbox.setEvent({
 				type: "click",
 				parent: "#" + this.moduleId,
 				child: "a",
@@ -99,7 +102,8 @@ app.register("sidebar-module", function(sandbox){
        			{
        				case self.enumDBType.table: self.ListSources.data = data.objectList; break;
        				case self.enumDBType.view: self.ListViews.data = data.objectList; break;
-       				case self.enumDBType.sproc: self.ListFunctions.data = data.objectList; break; 
+       				case self.enumDBType.sproc: self.ListFunctions.data = data.objectList; break;
+                    case self.enumDBType.shares: self.ListShares.data = data.objectList; break;
        			}
        			   			 
         	});           
@@ -170,6 +174,15 @@ app.register("sidebar-module", function(sandbox){
    						list.data = self.ListFunctions.data	
    					pathTemplate ='assets/js/templates/listFunctions';break; 
    				}
+       			case self.enumDBType.shares:
+   				{
+   					if(isRes)
+   						self.ListShares.data = data;	
+   					else
+   						list.data = self.ListShares.data	
+   					pathTemplate ='assets/js/templates/listShares';break; 
+   				}                   
+                   
    			}
 
             template = sandbox.fetchTemplate(pathTemplate, list); 

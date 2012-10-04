@@ -1,0 +1,62 @@
+
+<div id="mysharesContainer" class="navbar-text" style="text-align:left;">
+    <div class="accordion" id="accordionTables">
+        <div class="accordion-group">
+            <div class="accordion-heading lnh20">
+                <a class="accordion-toggle nolink text-shadow" data-toggle="collapse" data-parent="#accordionTables" href="#collapsePoints">
+                    <i class="icon-asterisk"></i> Tables
+                </a>
+            </div>
+            <div id="collapsePoints" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <ul id="lstPoints" class="nav nav-list scrollbar fff">
+                        <%  _.forEach(data, function(value) {
+                                if(value.ObjectType=='table') { %>
+                                    <li><a><%= value.ObjectName %></a></li>
+                                <%}
+                            }); %>                      
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-group">
+            <div class="accordion-heading lnh20">
+                <a class="accordion-toggle nolink text-shadow" data-toggle="collapse" data-parent="#accordionTables" href="#collapseLines">
+                    <i class="icon-minus"></i> Views
+                </a>
+            </div>
+            <div id="collapseLines" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <ul id="lstLines" class="nav nav-list scrollbar fff">
+                        <% _.forEach(data, function(value) {
+                                if(value.ObjectType=='view') { %>
+                                    <li><a><%= value.ObjectName %></a></li>
+                                <%}
+                            }); %>                                
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-group">
+            <div class="accordion-heading lnh20">
+                <a class="accordion-toggle nolink text-shadow" data-toggle="collapse" data-parent="#accordionTables" href="#collapsePolys">
+                    <i class="icon-sign-blank"></i> Functions
+                </a>
+            </div>
+            <div id="collapsePolys" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <ul id="lstPolygons" class="nav nav-list scrollbar fff">
+                        <% _.forEach(data, function(value) {
+                                if(value.ObjectType=='function') { %>
+                                    <li><a><%= value.ObjectName %></a></li>
+                                <%}
+                            }); %>  
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

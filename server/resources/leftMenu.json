@@ -31,7 +31,7 @@
             "id":3,
             "itemname": "myviews",
             "text": "My Views",
-            "ref": "mytables",
+            "ref": "myviews",
             "color": "#000",
             "hovercolor": "#b200ff",
             "icon": "icon-hdd",
@@ -67,7 +67,7 @@
             "color": "#000",
             "hovercolor": "#ff6a00",
             "icon": "icon-share",
-            "inControl": "submit",
+            "inControl": "popover",
             "active" : false,
             "toolbar": []
         },
