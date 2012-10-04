@@ -5459,7 +5459,6 @@ button.close {
 /* Custom and Own class */
 html { }
 body { margin:0; background:#fff; padding:60px 0 0 200px;}
-
 #headerContainer{position:absolute;top:0;left:0;width:100%;height:60px;}
 #sidebarContainer { position:absolute;top:60px;left:0;width:200px;height:100%;}
 #centralContainer  { height:100% !important; overflow:auto; }

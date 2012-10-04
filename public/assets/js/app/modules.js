@@ -42,7 +42,6 @@ app.register("sidebar-module", function(sandbox){
     		$("#maincontainer").append(sandbox.fetchTemplate('assets/js/templates/header', []));
 			this.getMenu();
 			$("#centralContainer").append(sandbox.fetchTemplate('assets/js/templates/dashboard', []));
-			//this.adjustMainContent();
 		},
 	    adjustMainContent: function() {
 	        var docH = $(document).height();
