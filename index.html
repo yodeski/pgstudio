@@ -9,6 +9,7 @@
 
     <!-- Application styles -->
     <link rel="stylesheet" href="/assets/css/site.css">
+
     <!-- Application usersource -->
     <script type="text/javascript" src="assets/js/libs/jquery.js"></script>
     <script type="text/javascript" src="assets/js/libs/jquery-scroll-min.js"></script>
@@ -23,16 +24,19 @@
     <!-- Main container -->
     <div role="main" id="maincontainer">
 
-        <div id="sidebarContainer">
-            <div class="sidebar-nav bs-docs-example">
+        <div id="sidebarContainer" data-spy="affix" data-offset-top="200">
+            <div class="sidebar-nav ">
                 <div id="leftMenuContainer" class="navbar-text" style="text-align:left;">
                     <ul id="leftMenu" class="nav nav-list"></ul>
                 </div>
             </div>
         </div>
 
-        <div id="mainContainer">
-
+        <div id="centralContainer">
+            <ul class="nav nav-tabs" id="ContentTabNav">
+                <li class="active"><a href="#dashboardTab" data-toggle="tab">Dashboard</a></li>
+            </ul>
+            <div id="ContentTabContainer" class="tab-content"></div>
         </div>
 
         <div id="footer">
@@ -42,38 +46,6 @@
 
 
     </div>
-
-    <!-- original test -->
-    <!--
-    <div id="page">
-        <div id="viewport-module" class="content module-container">
-            <h2>Viewport Module</h2>
-            <div id="main" class="main"></div>
-        </div>
-
-        <div id="navigation-module" class="navigation module-container">
-            <h3 class="info">Navigation Module</h3>
-            <ul>
-                <li><a href="#cats">cats</a></li>
-                <li><a href="#dogs">dogs</a></li>
-                <li><a href="#old buildings">old buildings</a></li>
-            </ul>
-            <label for="search">Search</label>
-            <input id="search" type="text"/>
-            <input id="submit" type="submit"/>
-        </div>
-
-        <div id="api-module" class="api-switcher module-container">
-            <h2>API Module</h2>
-            <select id="api-type">
-                <option class="flickr" value="flickr">Flickr</option>
-                <option class="you-tube" value="youtube">You Tube</option>
-            </select>
-        </div>
-
-    </div>-->
-    <!-- /end #page -->
-    <div id="footer-wrapper"><div id="footer">this is the footer</div></div>
 
 </body>
 </html>

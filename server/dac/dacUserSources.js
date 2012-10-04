@@ -56,6 +56,7 @@ module.exports = {
                     values: [useremail]
                 },
                 function (err, result) {
+                    console.log(result);
                     callback(data = { rows: result.rows, error: err });
                 });
 

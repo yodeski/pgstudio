@@ -31,7 +31,7 @@
             "id":3,
             "itemname": "myviews",
             "text": "My Views",
-            "ref": "myviews",
+            "ref": "mytables",
             "color": "#000",
             "hovercolor": "#b200ff",
             "icon": "icon-hdd",

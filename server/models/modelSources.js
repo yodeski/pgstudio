@@ -23,7 +23,6 @@ UserSource.loadUserSource = function (rows) {
         usersource.Sourcetype    = rows[r].sourcetype;
         usersource.Fieldtype     = rows[r].fieldtype;
         UserSourcesColl.push(usersource);
-        console.log('filas:' + rows.length);
     }
 
     return UserSourcesColl;

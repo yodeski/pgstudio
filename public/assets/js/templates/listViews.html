@@ -11,7 +11,7 @@
                 <div class="accordion-inner">
                     <ul id="lstPoints" class="nav nav-list scrollbar fff">
                         <%  _.forEach(data, function(value) {
-                                if(value.Fieldtype=='point' && value.Sourcetype=='table') { %>
+                                if(value.Fieldtype=='point' && value.Sourcetype=='view') { %>
                                     <li><a><%= value.ObjectName %></a></li>
                                 <%}
                             }); %>                      
@@ -30,7 +30,7 @@
                 <div class="accordion-inner">
                     <ul id="lstLines" class="nav nav-list scrollbar fff">
                         <% _.forEach(data, function(value) {
-                                if(value.Fieldtype=='line' && value.Sourcetype=='table') { %>
+                                if(value.Fieldtype=='line' && value.Sourcetype=='view') { %>
                                     <li><a><%= value.ObjectName %></a></li>
                                 <%}
                             }); %>                                
@@ -49,7 +49,7 @@
                 <div class="accordion-inner">
                     <ul id="lstPolygons" class="nav nav-list scrollbar fff">
                         <% _.forEach(data, function(value) {
-                                if(value.Fieldtype=='polygon' && value.Sourcetype=='table') { %>
+                                if(value.Fieldtype=='polygon' && value.Sourcetype=='view') { %>
                                     <li><a><%= value.ObjectName %></a></li>
                                 <%}
                             }); %>  

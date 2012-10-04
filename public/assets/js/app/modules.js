@@ -33,11 +33,24 @@ app.register("sidebar-module", function(sandbox){
 				callback: this.bindItemClick
 			}]);
     		//TODO - Manejar menu y header con template
-    		$("#maincontainer").append(sandbox.fetchTemplate('assets/js/templates/header', []));
-            $("#maincontainer").append(sandbox.fetchTemplate('assets/js/templates/sidebar', []));
-            this.getMenu();
+            
+            this.loadSections();
 
 		},
+		loadSections: function(){
+
+    		$("#maincontainer").append(sandbox.fetchTemplate('assets/js/templates/header', []));
+			this.getMenu();
+			$("#centralContainer").append(sandbox.fetchTemplate('assets/js/templates/dashboard', []));
+			//this.adjustMainContent();
+		},
+	    adjustMainContent: function() {
+	        var docH = $(document).height();
+	        var headH = $("#headerContainer").height();
+	        var footH = $("#footer").height();
+
+	        $("#maincontainer").height(docH - headH - footH - 130);	        
+	    },
 
         getMenu: function(){
             var self = this;
@@ -93,7 +106,7 @@ app.register("sidebar-module", function(sandbox){
                 global_close: false,
                 //content: template,
                 onShown: function() { self.setContentPopOver(this, item, el) },
-                onHide: function() { $('ul#leftMenu li').removeClass('active') }
+                onHide: function() { $('ul#leftMenu li').removeClass('active'); }
             });
 
          	$.ajax({ url: "/" + item.ref, async: true }).then(function(data) {
@@ -101,7 +114,6 @@ app.register("sidebar-module", function(sandbox){
        			switch(item.ref)
        			{
        				case self.enumDBType.table: self.ListSources.data = data.objectList; break;
-       				case self.enumDBType.view: self.ListViews.data = data.objectList; break;
        				case self.enumDBType.sproc: self.ListFunctions.data = data.objectList; break;
                     case self.enumDBType.shares: self.ListShares.data = data.objectList; break;
        			}
@@ -116,6 +128,7 @@ app.register("sidebar-module", function(sandbox){
 	        var list=[];
 	        //Asign conten to POPOVER
 	        pov.$tip.find('.popover-content > *').html(this.appendSources(item.ref));
+
 	        $('.scrollbar').scrollbar();
 
 	        $('ul#leftMenu li').removeClass('active');
@@ -140,7 +153,7 @@ app.register("sidebar-module", function(sandbox){
 			var list = {};
 			var data = [];
 			var isRes = false;
-			if(!self.ListSources || !self.ListViews || !self.ListFunctions)
+			if(!self.ListSources.data || !self.ListFunctions.data || !self.ListShares.data)
             {
             	$.ajax({ url: "/" + who, async: false }).then(function(data) {
 		 			list.data = data.objectList;
@@ -161,10 +174,10 @@ app.register("sidebar-module", function(sandbox){
    				case self.enumDBType.view:  
    				{
    					if(isRes)
-   						self.ListViews.data = data;	
+   						self.ListSources.data = data;	
 					else
-						list.data = self.ListViews.data;
-   					pathTemplate ='assets/js/templates/listView'; break;
+						list.data = self.ListSources.data;
+   					pathTemplate ='assets/js/templates/listViews'; break;
    				}
    				case self.enumDBType.sproc:
    				{
