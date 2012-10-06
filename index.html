@@ -8,14 +8,14 @@
   <title>pgstudio</title>
 
     <!-- Application styles -->
-    <link rel="stylesheet" href="/assets/css/site.css">
+    <link rel="stylesheet" href="css/site.css">
 
     <!-- Application usersource -->
-    <script type="text/javascript" src="assets/js/libs/jquery.js"></script>
-    <script type="text/javascript" src="assets/js/libs/jquery-scroll-min.js"></script>
-    <script type="text/javascript" src="assets/js/libs/bootstrap.js"></script>
-    <script type="text/javascript" src="assets/js/libs/lodash.js"></script>
-    <script type="text/javascript" src="assets/js/require.js"></script>
+    <script type="text/javascript" src="js/libs/jquery.js"></script>
+    <script type="text/javascript" src="js/libs/jquery-scroll-min.js"></script>
+    <script type="text/javascript" src="js/libs/bootstrap.js"></script>
+    <script type="text/javascript" src="js/libs/lodash.js"></script>
+    <script type="text/javascript" src="js/require.js"></script>
     <script type="text/javascript">require(["app/project"])</script> 
 
 </head>
@@ -33,12 +33,17 @@
         </div>
 
         <div id="centralContainer">
-            <ul class="nav nav-tabs" id="ContentTabNav">
-                <li class="active"><a href="#dashboardTab" data-toggle="tab">Dashboard</a></li>
-            </ul>
-            <div id="ContentTabContainer" class="tab-content"></div>
+        <ul class="nav nav-tabs" id="MapTabNav">
+            <li class="active"><a href="#MapTabContainer" data-toggle="tab">Map</a></li>
+        </ul>
+        <div id="MapTabContainer" class="tab-content">
+            <div id="map" class="map">
+                <div class="wax-legends">
+            </div>
         </div>
 
+        </div>
+            
         <div id="footer">
             <p>© APPGIS Company 2012</p>
         </div>        
@@ -46,6 +51,13 @@
 
 
     </div>
+    
+    <script src="js/libs/wax/modestmaps.min.js"></script>
+    <script src="js/libs/wax/wax.mm.js"></script>
+    <script src="js/libs/wax/wax.ext.js"></script>
+    <script src="js/libs/wax/easey.js"></script>
+    <script src="js/libs/wax/mmg.js"></script>
+    <script src="js/mapscript.js"></script>    
 
 </body>
 </html>

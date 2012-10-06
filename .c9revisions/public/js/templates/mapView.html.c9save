@@ -1,0 +1,4 @@
+{"ts":1349433733150,"silentsave":true,"restoring":false,"patch":[[]],"length":0}
+{"contributors":[],"silentsave":false,"ts":1349433799965,"patch":[[{"diffs":[[1,"<div class=\"tab-content\">\n\n</div>"]],"start1":0,"start2":0,"length1":0,"length2":33}]],"length":33,"saved":false}
+{"ts":1349434223185,"patch":[[{"diffs":[[0,"<"],[-1,"div"],[1,"ul class=\"nav nav-tabs\" id=\"MapTabNav\">\r\n    <li class=\"active\"><a href=\"#MapTabContainer\" data-toggle=\"tab\">Map</a></li>\r\n</ul>\r\n<div id=\"MapTabContainer\""],[0," class=\""]],"start1":0,"start2":0,"length1":12,"length2":164},{"diffs":[[0,"nt\">"],[-1,"\n\n"],[0,"</di"]],"start1":173,"start2":173,"length1":10,"length2":8}]],"length":183,"saved":false}
+{"ts":1349434251601,"patch":[[{"diffs":[[0,"ontent\">"],[1,"\r\n    <div id=\"MyMap\"></div>\r\n"],[0,"</div>"]],"start1":169,"start2":169,"length1":14,"length2":44}]],"length":213,"saved":false}
