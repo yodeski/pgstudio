@@ -33,7 +33,7 @@ app.register("map-module", function(sandbox){
                 ]
             });
             
-            main.layers({
+            mainMap.layers({
                 custom: { api: 'http://localhost:4000/database/pgs_buenos_aires/table/lineas-subte/{z}/{x}/{y}' }
             });            
 
