@@ -3,8 +3,8 @@ var DEBUG = (process.env.NODE_ENV !== 'production');
 module.exports = {
     pguser: "pggstduser",
     pgpass: "vivirencanada",
-    pgdb: "pggclient",
-    pghost: "ec2-204-236-171-205.us-west-1.compute.amazonaws.com",
+    pgdb: "pgstudio",
+    pghost: "184.169.136.90",// "ec2-204-236-171-205.us-west-1.compute.amazonaws.com",
     pgport: 5432,
     /** Session secret. */
     secret: 'I am a session secret. Please change me (and keep me a secret).',

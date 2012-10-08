@@ -5,6 +5,7 @@ app.register("map-module", function(sandbox){
 	return {
 
 		objSource: {}, //objeto tabla/view
+        
 		init: function(){
 			this.moduleId = "MyMap";
 			this.el = sandbox.getElement({ selector:"#" + this.moduleId });
@@ -30,7 +31,11 @@ app.register("map-module", function(sandbox){
                     'zoompan',
                     'share'
                 ]
-            });         
+            });
+            
+            main.layers({
+                custom: { api: 'http://localhost:4000/database/pgs_buenos_aires/table/lineas-subte/{z}/{x}/{y}' }
+            });            
 
 		}
 

@@ -10,6 +10,7 @@ module.exports = {
         Email: '',
         FirstName: '',
         LastName: '',
+        BaseName: '',
         Active: false,
         TotalTables: 0,
         TotalViews: 0,
@@ -26,6 +27,7 @@ module.exports = {
         user.Email            = rows[0].email;
         user.FirstName        = rows[0].firstname;
         user.LastName         = rows[0].lastname;
+        user.BaseName         = rows[0].basename
         user.Active           = rows[0].active;
         user.TotalTables      = rows[0].totaltables;
         user.TotalViews       = rows[0].totalviews;
