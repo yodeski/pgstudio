@@ -38,7 +38,8 @@ app.register("map-module", function(sandbox){
                     api: 'http://127.0.0.1:8888/subtes/{z}/{x}/{y}.png',
                     center: { zoom: 12, ease: 1000 }
                 }
-            });            
+            });
+            this.mainMap.setOverlay("subtes");
             
 
 		}
