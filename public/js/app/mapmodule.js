@@ -15,7 +15,7 @@ app.register("map-module", function(sandbox){
 		},
 		loadMap: function(){
 
-            mainMap = Map('map', {
+            this.mainMap = Map('map', {
                 // Specify the MapBox API url
                 api: 'http://api.tiles.mapbox.com/v3/mapbox.mapbox-streets.jsonp',
                 center: {
@@ -32,10 +32,14 @@ app.register("map-module", function(sandbox){
                     'share'
                 ]
             });
-            
-            mainMap.layers({
-                custom: { api: 'http://localhost:4000/database/pgs_buenos_aires/table/lineas-subte/{z}/{x}/{y}' }
+            this.mainMap.layers({
+
+                subtes: { 
+                    api: 'http://127.0.0.1:8888/subtes/{z}/{x}/{y}.png',
+                    center: { zoom: 12, ease: 1000 }
+                }
             });            
+            
 
 		}
 
