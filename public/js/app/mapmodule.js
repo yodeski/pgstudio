@@ -19,9 +19,9 @@ app.register("map-module", function(sandbox){
                 // Specify the MapBox API url
                 api: 'http://api.tiles.mapbox.com/v3/mapbox.mapbox-streets.jsonp',
                 center: {
-                    lat: -34.5875,      // Intial center point and zoom level.
-                    lon: -58.6725,      // To find coordinates and zoom levels
-                    zoom: 13                    // try: http://www.getlatlon.com
+                    lat: -34.5767,      // Intial center point and zoom level.
+                    lon: -58.437,      // To find coordinates and zoom levels
+                    zoom: 10            // try: http://www.getlatlon.com or http://freegeoip.net/json/201.250.58.50
                 },
                 zoomRange: [0, 15],             // Limit zooming on the map to these levels
                 features: [                     // Map features (see readme.md)
