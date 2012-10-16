@@ -2,14 +2,17 @@ app.register("map-module", function(sandbox){
     /*
     * @constructor
 	*/
-	return {
+	var mainMap;
+    return {
 
 		objSource: {}, //objeto tabla/view
         
 		init: function(){
 			this.moduleId = "MyMap";
 			this.el = sandbox.getElement({ selector:"#" + this.moduleId });
-            this.mainMap= null;
+            mainMap= null;
+            
+            this.handleLayerEvent();
             this.loadMap();
 
 		},
@@ -17,7 +20,7 @@ app.register("map-module", function(sandbox){
             var self = this;
             var sources = app.getModuleData("leftMenu").instance.getSources();
 
-            self.mainMap = Map('map', {
+            mainMap = Map('map', {
                 // Specify the MapBox API url
                 api: 'http://api.tiles.mapbox.com/v3/mapbox.mapbox-streets.jsonp',
                 center: {
@@ -36,15 +39,37 @@ app.register("map-module", function(sandbox){
             });
             _.forEach(sources, function(value) {
                 if(value) {
-                    self.mainMap.layers({
-                        subtes: { 
+                    mainMap.layers({
+                        lineassubte: { 
                             api: 'http://127.0.0.1:8888/' + value.ObjectName + '/{z}/{x}/{y}.png'
                         }
                     });
                 }
             });
 
-		}
+		},
+        
+        handleLayerEvent: function() {
+            
+            $('body').on('click.map', '[data-control="layer"]', function(e) {
+                var $this = $(this),
+                    id = $this.attr('href');
+                
+                id = id.replace(/.*(?=#[^\s]+$)/, '').slice(1);
+                
+                e.preventDefault();
+                
+                if($this.hasClass('active')) {
+                    $('[data-control="layer"]').removeClass('active');
+                    mainMap.removeOverlay(id);        
+                } else {
+                    $('[data-control="layer"]').removeClass('active');
+                    $this.addClass('active');
+                    mainMap.setOverlay(id);
+                }
+            });
+            
+        }
 
 	};
 });

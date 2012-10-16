@@ -20,7 +20,7 @@ app.register("leftMenu", function(sandbox){
 
             this.enumDBType = { table: "mytables", view: "myviews", sproc: "myfunctions", shares: "myshares" }; 
     		
-            sandbox.setEvent({
+            /*sandbox.setEvent({
 				type: "click",
 				parent: "#" + this.moduleId,
 				child: "a",
@@ -32,7 +32,7 @@ app.register("leftMenu", function(sandbox){
 				type: "menu-success",
 				context: this,
 				callback: this.bindItemClick
-			}]);
+			}]);*/
     		//TODO - Manejar menu y header con template
             
             this.loadSections();

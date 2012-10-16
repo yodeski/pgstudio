@@ -198,21 +198,21 @@ function bindGeocoder() {
 $(function() {
     if (location.hash === '#embed') $('body').removeClass().addClass('embed');
 
-    $('body').on('click.map', '[data-control="layer"]', function(e) {
-        var $this = $(this),
-            id = $this.attr('href');
-        id = id.replace(/.*(?=#[^\s]+$)/, '').slice(1);
-        var m = $('[data-control="geocode"]').attr('data-map') || 'main';
-        e.preventDefault();
-        if($this.hasClass('active')) {
-            $('[data-control="layer"]').removeClass('active');
-            window[m].removeOverlay(id);        
-        } else {
-            $('[data-control="layer"]').removeClass('active');
-            $this.addClass('active');
-            window[m].setOverlay(id);
-        }
-    });
+//    $('body').on('click.map', '[data-control="layer"]', function(e) {
+//        var $this = $(this),
+//            id = $this.attr('href');
+//        id = id.replace(/.*(?=#[^\s]+$)/, '').slice(1);
+//        var m = $('[data-control="geocode"]').attr('data-map') || 'mainMap';
+//        e.preventDefault();
+//        if($this.hasClass('active')) {
+//            $('[data-control="layer"]').removeClass('active');
+//            window[m].removeOverlay(id);        
+//        } else {
+//            $('[data-control="layer"]').removeClass('active');
+//            $this.addClass('active');
+//            window[m].setOverlay(id);
+//        }
+//    });
 
     bindGeocoder();
 });
