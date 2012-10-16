@@ -14,6 +14,7 @@ app.register("map-module", function(sandbox){
 
 		},
 		loadMap: function(){
+            var sources = app.getModuleData("leftMenu").getSources();
 
             this.mainMap = Map('map', {
                 // Specify the MapBox API url
@@ -32,14 +33,13 @@ app.register("map-module", function(sandbox){
                     'share'
                 ]
             });
-            this.mainMap.layers({
-
-                subtes: { 
-                    api: 'http://127.0.0.1:8888/subtes/{z}/{x}/{y}.png',
-                    center: { zoom: 12, ease: 1000 }
-                }
+            _.forEach(sources, function(value) {
+                this.mainMap.layers({
+                    subtes: { 
+                        api: 'http://127.0.0.1:8888/' + value + '/{z}/{x}/{y}.png'
+                    }
+                });
             });
-            
 
 		}
 

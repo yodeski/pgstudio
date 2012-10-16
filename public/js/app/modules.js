@@ -201,6 +201,10 @@ app.register("leftMenu", function(sandbox){
 
             return template;          
 		},
+        
+        getSources: function() {
+            return _.union(this.ListSources, this.ListViews);
+        }
 
 	};
 });
