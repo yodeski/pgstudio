@@ -39,7 +39,7 @@ app.register("map-module", function(sandbox){
             });
             mainMap.layers({
                 lineassubte: { 
-                    api: 'http://127.0.0.1:8888/lineassubte/0/0/0.png'
+                    api: 'http://tiles.appgis.com/lineassubte/{z}/{x}/{y}.png'
                 }
             });
             _.forEach(sources, function(value) {
