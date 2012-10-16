@@ -37,13 +37,14 @@ app.register("map-module", function(sandbox){
                     'share'
                 ]
             });
+            mainMap.layers({
+                lineassubte: { 
+                    api: 'http://127.0.0.1:8888/lineassubte/{z}/{x}/{y}.png'
+                }
+            });
             _.forEach(sources, function(value) {
                 if(value) {
-                    mainMap.layers({
-                        lineassubte: { 
-                            api: 'http://127.0.0.1:8888/' + value.ObjectName + '/{z}/{x}/{y}.png'
-                        }
-                    });
+
                 }
             });
 
