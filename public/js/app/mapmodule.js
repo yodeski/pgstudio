@@ -39,7 +39,7 @@ app.register("map-module", function(sandbox){
             });
             mainMap.layers({
                 lineassubte: { 
-                    api: 'http://127.0.0.1:8888/lineassubte/{z}/{x}/{y}.png'
+                    api: 'http://127.0.0.1:8888/lineassubte/0/0/{y}.png'
                 }
             });
             _.forEach(sources, function(value) {
