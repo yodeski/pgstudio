@@ -14,9 +14,10 @@ app.register("map-module", function(sandbox){
 
 		},
 		loadMap: function(){
+            var self = this;
             var sources = app.getModuleData("leftMenu").instance.getSources();
 
-            this.mainMap = Map('map', {
+            self.mainMap = Map('map', {
                 // Specify the MapBox API url
                 api: 'http://api.tiles.mapbox.com/v3/mapbox.mapbox-streets.jsonp',
                 center: {
@@ -34,15 +35,16 @@ app.register("map-module", function(sandbox){
                 ]
             });
             _.forEach(sources, function(value) {
-                this.mainMap.layers({
-                    subtes: { 
-                        api: 'http://127.0.0.1:8888/' + value + '/{z}/{x}/{y}.png'
-                    }
-                });
+                if(value) {
+                    self.mainMap.layers({
+                        subtes: { 
+                            api: 'http://127.0.0.1:8888/' + value.ObjectName + '/{z}/{x}/{y}.png'
+                        }
+                    });
+                }
             });
 
 		}
 
 	};
 });
-app.start("map-module");

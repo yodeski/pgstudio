@@ -1,6 +1,7 @@
 //================================================
 //          SIDEBAR MODULE                      //
 //================================================
+
 app.register("leftMenu", function(sandbox){
     /*
 	* @constructor
@@ -37,7 +38,12 @@ app.register("leftMenu", function(sandbox){
             this.loadSections();
 
 		},
-		loadSections: function(){
+		initMapModule: function() {
+            
+            app.start("map-module");
+        }, 
+        
+        loadSections: function(){
 
     		$("#maincontainer").append(sandbox.fetchTemplate(sandbox.getTemplatesPath('header'), []));
 			this.getMenu();
@@ -63,23 +69,25 @@ app.register("leftMenu", function(sandbox){
 
     	//this method will display the menu items returned by ajax call
 		showMenu: function(res){
-			var leftmenu = sandbox.getElement({
+			var self = this;
+            
+            var leftmenu = sandbox.getElement({
 				selector: "#leftMenu"
 			});
             
-			//loop over the returned json and display the elements
+            var initializeMapModule = _.once(self.initMapModule);
             
-			if(this.MenuData.length>0){
+            //loop over the returned json and display the elements
+			if(self.MenuData.length>0) {
 
-				for (var i = 0; i < this.MenuData.length; i++) {
-                    var item = this.MenuData[i];
+                _.forEach(self.MenuData, function(item) {
                     var relpop = (item.inControl=='popover') ? 'popover' : '';
                     var href = (item.inControl=='popover') ? '#' : item.ref;
-                    var $_li = $('<li id="itm_' + item.itemname + '" class="pointer" style="line-height:30px; color:' + item.color + '"><a idData="' + item.id + '" rel="' + relpop + '" href="' + href + '" class="text-shadow nolink" style="color:' + item.color + '"><i class="' + item.icon + ' icon-large text-shadow"></i>  <small style="font-size:12px;">' + item.text + '</small></a></li>');
+                    var $_li = $('<li id="itm_' + item.itemname + '" class="pointer" style="line-height:30px; color:' + item.color + '"><a idData="' + item.id + '" rel="' + relpop + '" href="#' + href + '" class="text-shadow nolink" style="color:' + item.color + '"><i class="' + item.icon + ' icon-large text-shadow"></i>  <small style="font-size:12px;">' + item.text + '</small></a></li>');
 
                     //setup some events and define a callback
                     if(item.inControl=='popover')
-                    	this.initPopOver($_li, item);
+                    	self.initPopOver($_li, item);
 
                     sandbox.domManipulation([{
             			type: "append",
@@ -87,9 +95,10 @@ app.register("leftMenu", function(sandbox){
         				what: $_li
         			}]);
                     
-				}
-			}
-            
+                    if(self.ListSources.data)
+                        initializeMapModule();
+				});
+			}   
 		},
         //initialize the popover
         initPopOver: function(el, item) {
@@ -108,20 +117,22 @@ app.register("leftMenu", function(sandbox){
                 onHide: function() { $('ul#leftMenu li').removeClass('active'); }
             });
 
-         	$.ajax({ url: "/" + item.ref, async: true }).then(function(data) {
-       			
-       			switch(item.ref)
-       			{
-       				case self.enumDBType.table: self.ListSources.data = data.objectList; break;
-       				case self.enumDBType.sproc: self.ListFunctions.data = data.objectList; break;
-                    case self.enumDBType.shares: self.ListShares.data = data.objectList; break;
-       			}
-       			   			 
-        	});           
+            self.loadObjectLists(item.ref);          
 
             $('.scrollbar').scrollbar();
         },
-
+        
+        loadObjectLists: function(ref) {
+            var self = this;
+            $.ajax({ url: "/" + ref, async: false }).then(function(data) {
+                switch(ref) {
+                    case self.enumDBType.table: self.ListSources.data = data.objectList; break;
+                    case self.enumDBType.sproc: self.ListFunctions.data = data.objectList; break;
+                    case self.enumDBType.shares: self.ListShares.data = data.objectList; break;
+                }
+            });         
+        },
+        
 	    setContentPopOver: function(pov, item, elem){
 	        var self = this;
 	        var list=[];
@@ -197,13 +208,13 @@ app.register("leftMenu", function(sandbox){
                    
    			}
 
-            template = sandbox.fetchTemplate(pathTemplate, list); 
-
+            template = sandbox.fetchTemplate(pathTemplate, list);
+            
             return template;          
 		},
         
         getSources: function() {
-            return this.ListSources;
+            return _.union(this.ListSources.data, this.ListViews.data);
         }
 
 	};
@@ -605,4 +616,4 @@ app.register("viewPort-module", function(sandbox){
 });
 
 //start the application by starting all modules
-app.startAll();
+app.start("leftMenu");
