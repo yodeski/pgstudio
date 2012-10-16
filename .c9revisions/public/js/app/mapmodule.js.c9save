@@ -79,3 +79,4 @@
 {"ts":1350362622898,"patch":[[{"diffs":[[0,"0/0/"],[-1,"{y}"],[1,"0"],[0,".png"]],"start1":1513,"start2":1513,"length1":11,"length2":9}]],"length":2506,"saved":false}
 {"contributors":[],"silentsave":false,"ts":1350386830929,"patch":[[{"diffs":[[0,"bte/"],[-1,"0/0/0"],[1,"{z}/{x}/{y}"],[0,".png"]],"start1":1509,"start2":1509,"length1":13,"length2":19}]],"length":2512,"saved":false}
 {"ts":1350386842133,"patch":[[{"diffs":[[0,"p://"],[-1,"127.0.0.1:8888"],[1,"tiles.appgis.com"],[0,"/lin"]],"start1":1482,"start2":1482,"length1":22,"length2":24}]],"length":2514,"saved":false}
+{"ts":1350387168564,"patch":[[{"diffs":[[0,"           api: "],[1,"["],[0,"'http://tiles.ap"]],"start1":1462,"start2":1462,"length1":32,"length2":33},{"diffs":[[0,"{y}.png'"],[1,"]"],[0,"\r\n      "]],"start1":1524,"start2":1524,"length1":16,"length2":17}]],"length":2516,"saved":false}
