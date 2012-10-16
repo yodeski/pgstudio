@@ -1,7 +1,7 @@
 //================================================
 //          SIDEBAR MODULE                      //
 //================================================
-app.register("sidebar-module", function(sandbox){
+app.register("leftMenu", function(sandbox){
     /*
 	* @constructor
 	*/

@@ -39,7 +39,6 @@ app.register("map-module", function(sandbox){
                     center: { zoom: 12, ease: 1000 }
                 }
             });
-            this.mainMap.setOverlay("subtes");
             
 
 		}
