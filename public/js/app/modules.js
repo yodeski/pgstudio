@@ -203,7 +203,7 @@ app.register("leftMenu", function(sandbox){
 		},
         
         getSources: function() {
-            return _.union(this.ListSources, this.ListViews);
+            return this.ListSources;
         }
 
 	};

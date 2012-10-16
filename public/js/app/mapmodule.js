@@ -14,7 +14,7 @@ app.register("map-module", function(sandbox){
 
 		},
 		loadMap: function(){
-            var sources = app.getModuleData("leftMenu").getSources();
+            var sources = app.getModuleData("leftMenu").instance.getSources();
 
             this.mainMap = Map('map', {
                 // Specify the MapBox API url
