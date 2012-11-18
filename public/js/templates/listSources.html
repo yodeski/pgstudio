@@ -12,7 +12,7 @@
                     <ul id="lstPoints" class="nav nav-list scrollbar fff">
                         <%  _.forEach(data, function(value) {
                                 if(value.Fieldtype=='point' && value.Sourcetype=='table') { %>
-                                    <li><a data-control="layer" href="#<%= value.ObjectName %>" class="pointer"><%= value.ObjectName %></a></li>
+                                    <li><a data-control="layer" DBName="<%= value.DBName %>" source="<%= value.ObjectName %>" href="#<%= value.ObjectName %>" class="pointer"><%= value.ObjectName %></a></li>
                                 <%}
                             }); %>                      
                     </ul>
@@ -31,7 +31,7 @@
                     <ul id="lstLines" class="nav nav-list scrollbar fff">
                         <% _.forEach(data, function(value) {
                                 if(value.Fieldtype=='line' && value.Sourcetype=='table') { %>
-                                    <li><a data-control="layer" href="#<%= value.ObjectName %>" class="pointer"><%= value.ObjectName %></a></li>
+                                    <li><a data-control="layer" DBName="<%= value.DBName %>" source="<%= value.ObjectName %>" href="#<%= value.ObjectName %>" class="pointer"><%= value.ObjectName %></a></li>
                                 <%}
                             }); %>                                
                     </ul>
@@ -50,7 +50,7 @@
                     <ul id="lstPolygons" class="nav nav-list scrollbar fff">
                         <% _.forEach(data, function(value) {
                                 if(value.Fieldtype=='polygon' && value.Sourcetype=='table') { %>
-                                    <li><a data-control="layer" href="#<%= value.ObjectName %>" class="pointer"><%= value.ObjectName %></a></li>
+                                    <li><a data-control="layer" DBName="<%= value.DBName %>" source="<%= value.ObjectName %>" href="#<%= value.ObjectName %>" class="pointer"><%= value.ObjectName %></a></li>
                                 <%}
                             }); %>  
                     </ul>

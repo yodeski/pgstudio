@@ -1,7 +1,38 @@
 (function(root) {
-    var Map = {},
+    Map = {},
         layers;
+    Map = new L.Map('map');
+    var baseURL = "http://tiles.appgis.com/database/<%= dbname %>/table/<%= table %>/{z}/{x}/{y}";
+    var layers = [];
+    var tilejson = {
+        tilejson: '1.0.0',
+        scheme: 'xyz',
+        tiles: [],
+        grids: [],
+        formatter: function(options, data) { return data.id }
+    };
 
+    Map.setOverlay = function() {
+        var dbname = "pgs_buenos_aires";//$('#dbname').val();
+        var table = "lineassubte";//$('#table').val();
+
+        var url = _.template(baseURL, {dbname: dbname, table: table});
+
+        tilejson.tiles = [url + '.png'];
+        tilejson.grids = [url + '.grid.json'];
+
+        _.each(layers, function(layer){
+            Map.removeLayer(layer)
+        });
+
+        var testMap = new wax.leaf.connector(tilejson);
+        Map.addLayer(testMap);
+        Map.setView(new L.LatLng(51.505, -0.09), 1, true);
+        wax.leaf.interaction(map, tilejson);
+        layers.push(testMap);
+    }
+    Map.setOverlay();
+    /*
     Map = function(el, l, callback) {
         wax.tilejson(l.api, function(t) {
             var handlers = [
@@ -41,9 +72,6 @@
                     case 'bwdetect':
                         wax.mm.bwdetect(MM_map);
                         break;
-                    /*case 'share':
-                        wax.mm.share(MM_map, t).appendTo($('body')[0]);
-                        break;*/
                     case 'tooltips':
                         MM_map.interaction = wax.mm.interaction()
                             .map(MM_map)
@@ -68,7 +96,7 @@
         });
         return Map;
     };
-
+    /*
     Map.layers = function(x) {
         if (!arguments.length) return layers;
         layers = x;
@@ -82,7 +110,7 @@
 
         wax.tilejson(l.api, function(t) {
             var level = (l.level === 'base') ? 0 : 1;
-            
+
             try {
                 MM_map.setLayerAt(level, new wax.mm.connector(t));
             } catch (e) {
@@ -121,6 +149,7 @@
     };
 
     root.Map = Map;
+    */
 
 })(this);
 
@@ -206,7 +235,7 @@ $(function() {
 //        e.preventDefault();
 //        if($this.hasClass('active')) {
 //            $('[data-control="layer"]').removeClass('active');
-//            window[m].removeOverlay(id);        
+//            window[m].removeOverlay(id);
 //        } else {
 //            $('[data-control="layer"]').removeClass('active');
 //            $this.addClass('active');

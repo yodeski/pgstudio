@@ -9,7 +9,10 @@ site.use(express.static(__dirname + '/public'));
 site.use(express.favicon(__dirname + '/favicon.ico'));
 
 site.use(express.cookieParser());
-//site.use(express.session({ secret: config.secret }));
+site.use(express.session({
+        secret: config.secret
+    })
+);
 
 site.use(site.router);
 require('./server/routes')(site);

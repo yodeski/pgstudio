@@ -15,7 +15,7 @@ module.exports = function(site) {
     });
 
     site.get('/mytables', function (req, res) {
-        UserSource.getUserSources(site.config, 'yodeski@gmail.com', function(data) {
+        UserSource.getUserSources(site.config, 'yodeski@gmail.com', 'pgs_buenos_aires', function(data) {
             res.send({ objectList: data.obj, error: data.error });
         });
     });
