@@ -2,7 +2,6 @@ app.register("map-module", function(sandbox){
     /*
     * @constructor
 	*/
-	var mainMap;
     return {
 
 		objSource: {}, //objeto tabla/view
@@ -10,160 +9,150 @@ app.register("map-module", function(sandbox){
 		init: function(){
 			this.moduleId = "MyMap";
 			this.el = sandbox.getElement({ selector:"#" + this.moduleId });
-            this.MM_map = {};
-            this.theLayers;
-            
-            this.baseUrl = 'http://api.tiles.mapbox.com/v3/mapbox.mapbox-streets.jsonp';
-            this.layerURL = "http://tiles.appgis.com/database/<%= dbname %>/table/<%= table %>/{z}/{x}/{y}";
-            this.baseStyleURL = "http://tiles.appgis.com/database/<%= dbname %>/table/<%= table %>";
-            this.tilejson = {
-                tilejson: '1.0.0',
-                scheme: 'xyz',
-                tiles: [],
-                grids: [],
-                formatter: function(options, data) { return data.id }
-            };
-            
+            this.Map = {};
+            this.theLayers = [];
+            this.baseUrl = 'http://{s}.tile.cloudmade.com/{key}/31371/256/{z}/{x}/{y}.png';
+            this.MapDir = "";
             this.handleLayerEvent();
-            this.loadMap();
+            this.loadMap(this.baseUrl);
 
 		},
-        Map: function(el, l, callback) {
-            var self = this;
-            wax.tilejson(l.api, function(t) {
-                var handlers = [
-                    new MM.DragHandler(),
-                    new MM.DoubleClickHandler(),
-                    new MM.TouchHandler()
-                ];
-                if ($.inArray('zoomwheel', l.features) >= 0) {
-                    handlers.push(new MM.MouseWheelHandler());
-                }
-    
-                self.MM_map = new MM.Map(el, new wax.mm.connector(t), null, handlers);
-                self.MM_map.setCenterZoom({
-                    lat: (l.center) ? l.center.lat : t.center[1],
-                    lon: (l.center) ? l.center.lon : t.center[0]
-                }, (l.center) ? l.center.zoom : t.center[2]);
-    
-                if (l.zoomRange) {
-                    self.MM_map.setZoomRange(l.zoomRange[0], l.zoomRange[1]);
-                } else {
-                    self.MM_map.setZoomRange(t.minzoom, t.maxzoom);
-                }
-    
-                wax.mm.attribution(self.MM_map, t).appendTo(self.MM_map.parent);
-    
-                for (var i = 0; i < l.features.length; i++) {
-                    switch(l.features[i]) {
-                        case 'zoompan':
-                            wax.mm.zoomer(self.MM_map).appendTo(self.MM_map.parent);
-                            break;
-                        case 'zoombox':
-                            wax.mm.zoombox(self.MM_map);
-                            break;
-                        case 'legend':
-                            self.MM_map.legend = wax.mm.legend(self.MM_map, t).appendTo(self.MM_map.parent);
-                            break;
-                        case 'bwdetect':
-                            wax.mm.bwdetect(self.MM_map);
-                            break;
-                        case 'share':
-                            wax.mm.share(self.MM_map, t).appendTo($('body')[0]);
-                            break;
-                        case 'tooltips':
-                            self.MM_map.interaction = wax.mm.interaction()
-                                .map(self.MM_map)
-                                .tilejson(t)
-                                .on(wax.tooltip()
-                                    .parent(self.MM_map.parent)
-                                    .events()
-                                );
-                            break;
-                        case 'movetips':
-                            self.MM_map.interaction = wax.mm.interaction()
-                                .map(self.MM_map)
-                                .tilejson(t)
-                                .on(wax.movetip()
-                                    .parent(self.MM_map.parent)
-                                    .events()
-                                );
-                            break;
-                    }
-                }
-                if (callback && typeof(callback) == 'function') callback();
-            });
-            return self.MM_map;
-        },
-        
-		loadMap: function(){
-            
-            mainMap = this.Map('mymap', {
-                // Specify the MapBox API url
-                api: 'http://api.tiles.mapbox.com/v3/mapbox.mapbox-streets.jsonp',
-                center: {
-                    lat: -34.5767,      // Intial center point and zoom level.
-                    lon: -58.437,       // To find coordinates and zoom levels
-                    zoom: 12            // try: http://www.getlatlon.com or http://freegeoip.net/json/201.250.58.50
-                },
-                zoomRange: [0, 20],     // Limit zooming on the map to these levels
-                features: [             // Map features (see readme.md)
-                    'zoomwheel',
-                    'movetips',
-                    'zoombox',
-                    'zoompan'
-                ]
-            });
-
-		},
-        setOverlay: function(el) {
-            var self = this;
-            
-            var $this = el,
-                db = $this.attr('DBName')
-                id = $this.attr('href'),
-            
-            id = id.replace(/.*(?=#[^\s]+$)/, '').slice(1);
-
-            var url = _.template(self.layerURL, {dbname: db, table: id});
-            self.tilejson.tiles = [url + '.png'];
-            self.tilejson.grids = [url + '.grid.json'];
-            
-            var testMap = new wax.mm.connector(self.tilejson);
-            try {
-                self.MM_map.setLayerAt(0, new wax.mm.connector(self.tilejson));
-            } catch (e) {
-                self.MM_map.insertLayerAt(0, new wax.mm.connector(self.tilejson));
-            }
-            self.setStyle(el);
-
-        },
-        setStyle:function(el) {
-            var self = this;
-            
-            var $this = el,
-                db = $this.attr('DBName')
-                id = $this.attr('href'),
-            
-            id = id.replace(/.*(?=#[^\s]+$)/, '').slice(1);
-
-            var url = _.template(self.baseStyleURL, {dbname: db, table: id});
-            var style = "{style: #" + id + "{line-color:#FF6600; line-width:1; line-opacity: 0.7;}}";
-            
-            $.ajax({ url: url + "/style?" + style, async: true, method:post }).then(function(data) {
-                
-            });         
-        
-        },
         
         handleLayerEvent: function() {
             var self = this;
             
             $('body').on('click.map', '[data-control="layer"]', function(e) {
-                self.setOverlay($(this));
+                self.setMSTileOverlay($(this));
+                self.getMapFile($(this));
+                //self.setOverlay($(this), self.Map.getBounds());
+            });   
+        },        
+        turnOnOffLayer: function(el) {        
+           var self = this;
+           
+           var $this = el,
+                id = $this.attr('href');
+            
+            var tablename = id.replace(/.*(?=#[^\s]+$)/, '').slice(1);
+                
+            var $swith = $this.find('span');
+            var state = $swith.attr('state');
+            if(state==='on') {
+                if (self.theLayers[tablename] != undefined) {
+                    self.Map.removeLayer(self.theLayers[tablename]);
+                };
+                $swith.attr('state', 'off');
+                $swith.removeClass('text-light');
+                $swith.parent().addClass('text-grayed');
+                return false;
+            }
+            else {
+                $swith.attr('state', 'on');
+                $swith.addClass('text-light');
+                $swith.parent().removeClass('text-grayed');
+                return true;
+            }
+            
+        },
 
+        loadMap: function(url){
+            var self = this;
+            $.get('getMapsDirectory', function (res) {
+                self.MapDir = res;
             });
             
+            self.Map = L.map('mymap').setView([-34.5767, -58.437], 13);
+            var tileLayer = new L.TileLayer(url, {
+                attribution: 'Map data &copy; 2011 OpenStreetMap contributors, Imagery &copy; 2012 CloudMade',
+                key: 'BC9A493B41014CAABB98F0471D759707'
+            });
+          
+            self.Map.addLayer(tileLayer);
+
+		},
+        setMSTileOverlay: function(el) {
+            var self = this;
+            
+            var turnOn = self.turnOnOffLayer(el);
+            if(turnOn) {
+                var $this = el,
+                    db = $this.attr('DBName'),
+                    id = $this.attr('href');
+                
+                var tablename = id.replace(/.*(?=#[^\s]+$)/, '').slice(1);
+                var urlTemplate = 'http://localhost/cgi-bin/mapserv?';
+                urlTemplate += 'map=' + self.MapDir + db + '.map&';
+                urlTemplate += 'layers=' + tablename + '&';
+                urlTemplate += 'mode=tile&';
+                urlTemplate += 'tilemode=gmap&';
+                urlTemplate += 'tile={x}+{y}+{z}';
+                
+                var layer = new L.TileLayer(urlTemplate, {
+                    transparent: true,
+                    attribution: "FOSM"
+                });
+                self.theLayers[tablename] = layer;
+                self.Map.addLayer(layer);
+            }
+        },
+        getMapFile: function(el) {
+            var self = this;
+            var $this = el,
+                db = $this.attr('DBName');
+            
+            $.get('getMapFile', {mapfile: db }, function (res) {
+                var editor = ace.edit("editor");
+                editor.setValue(res); 
+            }); 
+        
+        },
+        setOverlay: function(el, bounds) {
+            var self = this;
+            
+            var $this = el,
+                db = $this.attr('DBName'),
+                id = $this.attr('href');
+            
+            var tablename = id.replace(/.*(?=#[^\s]+$)/, '').slice(1);
+            var fieldname = 'gid';
+            var boundbox = new L.LatLngBounds(bounds._southWest, bounds._northEast);
+            var bbBox = {
+                _sWLat: boundbox.getSouthWest().lat,
+                _sWLon: boundbox.getSouthWest().lng,
+                _nELat: boundbox.getNorthEast().lat,
+                _nELon: boundbox.getNorthEast().lng
+            };
+                    
+            $.getJSON(
+                '/getGeoJson',
+                {_bbBox: bbBox, _tablename: tablename, _fieldname: fieldname},
+                function (res) {
+                    self.parseLayerResponse(tablename, res)
+                });
+            //self.setStyle(el);
+
+        },
+        parseLayerResponse:function(layername, features) {
+            var self = this;
+            if (self.theLayers[layername] != undefined) {
+                self.Map.removeLayer(self.theLayers[layername]);
+            };
+            var myStyle = {
+                "color": "#ff7800",
+                "strokeColor": "#0d0",
+                "stroke-width":"1",
+                "weight": 1,
+                "opacity": 0.95
+            };
+            self.theLayers[layername] = L.geoJson(features.features, {
+                style: myStyle
+            }).addTo(self.Map);
+            /*self.theLayers[layername] = new L.GeoJSON();
+            self.theLayers[layername].on('featureparse', function(e) {
+                e.layer.setStyle({ color:  '#003300', weight: 2, fill: true, fillColor: '#009933' });
+            });
+            self.theLayers[layername].addData(features);
+            self.Map.addLayer(self.theLayers[layername]);*/
         }
 
 	};

@@ -41,29 +41,19 @@ app.register("leftMenu", function(sandbox){
 		initMapModule: function() {
             
             app.start("map-module");
+            app.start("editor-module");
         }, 
         
         loadSections: function(){
-
     		$("#maincontainer").append(sandbox.fetchTemplate(sandbox.getTemplatesPath('header'), []));
 			this.getMenu();
 
 		},
-	    adjustMainContent: function() {
-	        var docH = $(document).height();
-	        var headH = $("#headerContainer").height();
-	        var footH = $("#footer").height();
-
-	        $("#maincontainer").height(docH - headH - footH - 130);	        
-	    },
-
         getMenu: function(){
             var self = this;
             $.get('getMenu', function (res) {
-
                 self.MenuData = res.data;
                 self.showMenu();
-
             });
 		},
 
@@ -112,6 +102,7 @@ app.register("leftMenu", function(sandbox){
                 placement:'belowRight',
                 allow_multiple:false,
                 global_close: false,
+                //width:280,
                 //content: template,
                 onShown: function() { self.setContentPopOver(this, item, el) },
                 onHide: function() { $('ul#leftMenu li').removeClass('active'); }

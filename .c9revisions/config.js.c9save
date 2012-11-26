@@ -2,3 +2,30 @@
 {"contributors":[],"silentsave":false,"ts":1349298521177,"patch":[[{"diffs":[[0,"rt: "],[-1,"3131, //"],[0,"proc"]],"start1":707,"start2":707,"length1":16,"length2":8},{"diffs":[[0,"env.PORT"],[-1,", //"],[1," || "],[0,"3131,\n  "]],"start1":719,"start2":719,"length1":20,"length2":20},{"diffs":[[0,"st: "],[-1,"'localhost',//"],[0,"proc"]],"start1":743,"start2":743,"length1":22,"length2":8},{"diffs":[[0,"v.IP"],[-1,", //"],[1," || "],[0,"'loc"]],"start1":757,"start2":757,"length1":12,"length2":12}]],"length":1060,"saved":false}
 {"contributors":[],"silentsave":false,"ts":1349653044921,"patch":[[{"diffs":[[0," pghost:"],[1," \"184.169.136.90\",//"],[0," \"ec2-20"]],"start1":154,"start2":154,"length1":16,"length2":36}]],"length":1080,"saved":false}
 {"contributors":[],"silentsave":false,"ts":1349661225147,"patch":[[{"diffs":[[0," \"pg"],[-1,"gclient"],[1,"studio"],[0,"\",\n "]],"start1":137,"start2":137,"length1":15,"length2":14}]],"length":1079,"saved":false}
+{"contributors":[],"silentsave":false,"ts":1353634825333,"patch":[[{"diffs":[[0,"   port:"],[1," 4141 ||"],[0," process"]],"start1":721,"start2":721,"length1":16,"length2":24}]],"length":1087,"saved":false}
+{"contributors":[],"silentsave":false,"ts":1353808444395,"patch":[[{"diffs":[[0,"ghost: \""],[1,"localhost\", //"],[0,"184.169."]],"start1":155,"start2":155,"length1":16,"length2":30}]],"length":1101,"saved":false}
+{"ts":1353808460099,"patch":[[{"diffs":[[0,": \"p"],[-1,"ggstduser"],[1,"ostgres"],[0,"\",\n "]],"start1":83,"start2":83,"length1":17,"length2":15}]],"length":1099,"saved":false}
+{"contributors":[],"silentsave":true,"ts":1353902637430,"patch":[[{"diffs":[[0,": 5432,\n"],[1,"    \n"],[0,"    /** "]],"start1":259,"start2":259,"length1":16,"length2":21}]],"length":1104,"saved":false}
+{"ts":1353902639353,"patch":[[{"diffs":[[0,"32,\n    "],[1,"/*"],[0,"\n    /**"]],"start1":263,"start2":263,"length1":16,"length2":18}]],"length":1106,"saved":false}
+{"ts":1353902640296,"patch":[[{"diffs":[[0,",\n    /*"],[1,"*"],[0,"\n    /**"]],"start1":265,"start2":265,"length1":16,"length2":17}]],"length":1107,"saved":false}
+{"ts":1353902641191,"patch":[[{"diffs":[[0,"\n    /**"],[1," *"],[0,"\n    /**"]],"start1":266,"start2":266,"length1":16,"length2":18}]],"length":1109,"saved":false}
+{"ts":1353902641860,"patch":[[{"diffs":[[0,"   /** *"],[1,"/"],[0,"\n    /**"]],"start1":268,"start2":268,"length1":16,"length2":17}]],"length":1110,"saved":false}
+{"ts":1353902644029,"patch":[[{"diffs":[[0,"    /** "],[1,"*"],[0,"*/\n    /"]],"start1":267,"start2":267,"length1":16,"length2":17}]],"length":1111,"saved":false}
+{"ts":1353902647826,"patch":[[{"diffs":[[0,"    /** "],[1,"Map"],[0,"**/\n    "]],"start1":267,"start2":267,"length1":16,"length2":19}]],"length":1114,"saved":false}
+{"ts":1353902649976,"patch":[[{"diffs":[[0," /** Map"],[1,"f"],[0,"**/\n    "]],"start1":270,"start2":270,"length1":16,"length2":17}]],"length":1115,"saved":false}
+{"ts":1353902651000,"patch":[[{"diffs":[[0,"/** Mapf"],[1,"i"],[0,"**/\n    "]],"start1":271,"start2":271,"length1":16,"length2":17}]],"length":1116,"saved":false}
+{"ts":1353902652309,"patch":[[{"diffs":[[0,"** Mapfi"],[1,"les "],[0,"**/\n    "]],"start1":272,"start2":272,"length1":16,"length2":20}]],"length":1120,"saved":false}
+{"ts":1353902653995,"patch":[[{"diffs":[[0,"apfiles "],[1,"Direc"],[0,"**/\n    "]],"start1":276,"start2":276,"length1":16,"length2":21}]],"length":1125,"saved":false}
+{"ts":1353902655382,"patch":[[{"diffs":[[0,"es Direc"],[1,"tory"],[0,"**/\n    "]],"start1":281,"start2":281,"length1":16,"length2":20}]],"length":1129,"saved":false}
+{"ts":1353902657877,"patch":[[{"diffs":[[0,"irectory"],[1," "],[0,"**/\n    "]],"start1":285,"start2":285,"length1":16,"length2":17}]],"length":1130,"saved":false}
+{"ts":1353902658815,"patch":[[{"diffs":[[0,"ory **/\n"],[1,"    \n"],[0,"    /** "]],"start1":290,"start2":290,"length1":16,"length2":21}]],"length":1135,"saved":false}
+{"ts":1353902659697,"patch":[[{"diffs":[[0,"**/\n    "],[1,"req.session.postgisDB"],[0,"\n    /**"]],"start1":294,"start2":294,"length1":16,"length2":37}]],"length":1156,"saved":false}
+{"ts":1353902663156,"patch":[[{"diffs":[[0,"**/\n    "],[1,"map"],[0,"req.sess"]],"start1":294,"start2":294,"length1":16,"length2":19}]],"length":1159,"saved":false}
+{"ts":1353902668681,"patch":[[{"diffs":[[0,"\n    map"],[1,"sdirec"],[0,"req.sess"]],"start1":297,"start2":297,"length1":16,"length2":22}]],"length":1165,"saved":false}
+{"ts":1353902670667,"patch":[[{"diffs":[[0," mapsdir"],[-1,"ec"],[0,"req.sess"]],"start1":301,"start2":301,"length1":18,"length2":16}]],"length":1163,"saved":false}
+{"ts":1353902672470,"patch":[[{"diffs":[[0," mapsdir"],[1,":"],[0,"req.sess"]],"start1":301,"start2":301,"length1":16,"length2":17}]],"length":1164,"saved":false}
+{"ts":1353902673229,"patch":[[{"diffs":[[0,"mapsdir:"],[1," "],[0,"req.sess"]],"start1":302,"start2":302,"length1":16,"length2":17}]],"length":1165,"saved":false}
+{"ts":1353902677073,"patch":[[{"diffs":[[0,"ir: "],[-1,"req.session.postgisDB"],[0,"\n   "]],"start1":307,"start2":307,"length1":29,"length2":8}]],"length":1144,"saved":false}
+{"ts":1353902677797,"patch":[[{"diffs":[[0,"apsdir: "],[1,"\"\""],[0,"\n    /**"]],"start1":303,"start2":303,"length1":16,"length2":18}]],"length":1146,"saved":false}
+{"ts":1353902679027,"patch":[[{"diffs":[[0,"sdir: \"\""],[1,","],[0,"\n    /**"]],"start1":305,"start2":305,"length1":16,"length2":17}]],"length":1147,"saved":false}
+{"ts":1353902710134,"patch":[[{"diffs":[[0,"psdir: \""],[1,"/home/yodeski/sites/pgstudio/mapfiles/"],[0,"\",\n    /"]],"start1":304,"start2":304,"length1":16,"length2":54}]],"length":1185,"saved":false}

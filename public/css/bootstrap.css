@@ -3813,7 +3813,7 @@ a.thumbnail:hover {
   left: 0;
   z-index: 1010;
   display: none;
-  width: 236px;
+  width: 280px;
   padding: 1px;
   background-color: #ffffff;
   -webkit-background-clip: padding-box;
@@ -5460,8 +5460,8 @@ button.close {
 html { }
 body { margin:0; background:#fff; padding:60px 0 0 200px; overflow:hidden;}
 #headerContainer{position:absolute;top:0;left:0;width:100%;height:60px;}
-#sidebarContainer { position:absolute;top:60px;left:0;width:200px;height:100%;}
-#rightSidebarContainer { display:none; padding: 8px; background:#fff; border:solid 1px #adadad; position:absolute;top:40px;right:0;width:50%;height:100%;z-index:99;float:right;}
+#sidebarContainer { position:fixed;top:60px;left:0;width:200px;height:100%;}
+#rightSidebarContainer { display:block; padding: 8px; background:#fff; border:solid 1px #adadad; position:fixed;top:40px;right:0;width:50%;height:100%;z-index:99;float:right;}
 #centralContainer  { height:100% !important; overflow:auto; }
 @media screen{ body>div#headerContainer{ position:fixed; }
   body>div#sidebarContainer{position:fixed;}
@@ -5481,6 +5481,9 @@ body { margin:0; background:#fff; padding:60px 0 0 200px; overflow:hidden;}
 }
 
 .text-shadow { text-shadow: 0 0 0.15em rgba(0, 0, 0, 0.3); color: #000;}
+.text-grayed { text-shadow: 0 0 0.15em rgba(0, 0, 0, 0.3); color: #76797a;}
+.text-light { text-shadow: 0 0 0.15em rgba(0, 0, 0, 0.3); color: #0059b8;}
+
 .pointer {cursor: pointer;}
 .nobckg { background: #fff !important; color: #000;} 
 .nobckg:hover {color: #2F96B4; } 
@@ -5512,8 +5515,8 @@ body { margin:0; background:#fff; padding:60px 0 0 200px; overflow:hidden;}
 .lnh28 {line-height: 28px !important;}
 .lnh30 {line-height: 30px !important;}
 
-.clBlack{ color #000; }
-.clWhite{ color #fff; }
+.clBlack{ color: #000; }
+.clWhite{ color: #fff; }
 
 .scrollbar
 {
@@ -5522,3 +5525,23 @@ body { margin:0; background:#fff; padding:60px 0 0 200px; overflow:hidden;}
 }
 
 .centered { position: absolute;top: 50%;left: 50%; margin-top: -200px; margin-left: -200px;}
+.map {
+    position: fixed;
+    top:40px;
+    height: 100%;
+    width: 100%;
+    z-index: 0;
+    border: solid 1px #adadad;
+}
+
+.ace_editor_wrapper {
+    position: fixed;
+    border: 1px solid #DDD;
+    margin-top: 0;
+}  
+#editor { 
+    top: 0;
+    right: 0;
+    bottom: 1px;
+    left: 0;
+}

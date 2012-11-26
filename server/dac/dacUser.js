@@ -18,7 +18,7 @@ module.exports = {
                 var passwdHash = result.rows[0].pass;
                 var cryptHash = crypto.createHmac('sha256', result.rows[0].salt).update(pass).digest('hex');
                 if (passwdHash == cryptHash) {
-                    console.log(crypto.createHmac('sha256', result.rows[0].salt).update(pass).digest('hex'));
+                    //console.log(crypto.createHmac('sha256', result.rows[0].salt).update(pass).digest('hex'));
                     callback(data = { rows: result.rows, error: err });
                 }
                 else {

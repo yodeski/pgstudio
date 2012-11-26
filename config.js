@@ -1,11 +1,13 @@
 var DEBUG = (process.env.NODE_ENV !== 'production');
 
 module.exports = {
-    pguser: "pggstduser",
+    pguser: "postgres",
     pgpass: "vivirencanada",
     pgdb: "pgstudio",
-    pghost: "184.169.136.90",// "ec2-204-236-171-205.us-west-1.compute.amazonaws.com",
+    pghost: "localhost", //184.169.136.90",// "ec2-204-236-171-205.us-west-1.compute.amazonaws.com",
     pgport: 5432,
+    /** Mapfiles Directory **/
+    mapsdir: "/home/yodeski/sites/pgstudio/mapfiles/",
     /** Session secret. */
     secret: 'I am a session secret. Please change me (and keep me a secret).',
     /** Default cookie lifetime is 1 day. */
@@ -17,7 +19,7 @@ module.exports = {
     /** Current node environment. */
     env: (process.env.NODE_ENV || 'development'),
     /** Port to use. */
-    port: process.env.PORT || 3131,
+    port: 4141 || process.env.PORT || 3131,
     host: process.env.IP || 'localhost',
     enableSMTP: true, /** Your SMTP information. You can use gmail or your own server. */
     SMTP: {

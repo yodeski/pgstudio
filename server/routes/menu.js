@@ -11,7 +11,7 @@ module.exports = function(site) {
 
     site.get('/getMenu', function (req, res) {
         var myMenu = require('../resources/leftMenu.json');
-        res.send(myMenu);
+        res.send( myMenu );
     });
 
     site.get('/mytables', function (req, res) {

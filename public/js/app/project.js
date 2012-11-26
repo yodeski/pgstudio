@@ -5,6 +5,9 @@ require(["core", "sandbox"], function() {
 		//This function will be called when all the dependencies
 		//listed above are loaded. Note that this function could
 		//be called before the page is loaded. This callback is optional.
-        require(["app/modules", "app/mapmodule"]);
+        require( [ "app/modules", "app/mapmodule", "app/editormodule" ] );
+        
+        //general initializations
+        $(".closeMe").click(function(){ $(this).parent().hide('slow'); })
     });
 });
