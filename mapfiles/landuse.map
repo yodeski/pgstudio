@@ -1,0 +1,16 @@
+
+LAYER 
+  CONNECTIONTYPE postgis 
+  NAME "landuse"
+  TYPE POLYGON 
+  CONNECTION "user=postgres dbname=pgs_buenos_aires password=vivirencanada host=localhost"
+  PROCESSING "CLOSE_CONNECTION=DEFER"
+  DATA "the_geom from landuse" 
+  CLASS 
+      STYLE
+        OUTLINECOLOR 40 140 40
+        COLOR 130 255 130
+      END
+  END  
+END
+

@@ -1,0 +1,17 @@
+
+LAYER 
+  CONNECTIONTYPE postgis 
+  NAME "lineassubte" 
+  EXTENT  -73.181864 -55.087901 -53.514711 -21.721789
+  CONNECTION "user=postgres dbname=pgs_buenos_aires password=vivirencanada host=localhost"
+  PROCESSING "CLOSE_CONNECTION=DEFER"
+  DATA "the_geom from lineassubte"
+  TYPE LINE 
+  CLASS 
+    STYLE
+      COLOR 250 52 55 
+      WIDTH 2
+    END
+  END  
+END
+

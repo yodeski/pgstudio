@@ -1,0 +1,28 @@
+  #
+  # Start of symbol definitions (we're only using a few)
+  #
+  SYMBOL
+    NAME 'circle'
+    TYPE ELLIPSE
+    POINTS 1 1 END
+    FILLED TRUE
+  END
+
+LAYER 
+  CONNECTIONTYPE postgis 
+  NAME "estacionessubte"
+  TYPE POINT 
+  CONNECTION "user=postgres dbname=pgs_buenos_aires password=vivirencanada host=localhost"
+  PROCESSING "CLOSE_CONNECTION=DEFER"
+  DATA "the_geom from estacionessubte" 
+  CLASS 
+      STYLE
+        COLOR 250 250 250
+	OUTLINECOLOR 255 22 55        
+	SYMBOL 'circle'
+        SIZE 14
+      END
+  END  
+END
+
+

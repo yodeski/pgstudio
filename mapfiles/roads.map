@@ -1,0 +1,17 @@
+
+LAYER 
+  CONNECTIONTYPE postgis 
+  NAME "roads" 
+  CONNECTION "user=postgres dbname=pgs_buenos_aires password=vivirencanada host=localhost"
+  PROCESSING "CLOSE_CONNECTION=DEFER"
+  DATA "the_geom from roads" 
+  TYPE LINE 
+  CLASS 
+    STYLE
+      COLOR 22 22 255 
+      WIDTH 1 
+    END
+  END  
+END
+
+

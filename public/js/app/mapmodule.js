@@ -98,13 +98,34 @@ app.register("map-module", function(sandbox){
         getMapFile: function(el) {
             var self = this;
             var $this = el,
-                db = $this.attr('DBName');
+                db = $this.attr('DBName'),
+                id = $this.attr('href');
             
-            $.get('getMapFile', {mapfile: db }, function (res) {
+            var tablename = id.replace(/.*(?=#[^\s]+$)/, '').slice(1);
+             
+            $.get('getMapFile', {mapfile: tablename }, function (res) {
                 var editor = ace.edit("editor");
-                editor.setValue(res); 
+                editor.commands.addCommand({
+                    name: 'saveMap',
+                    bindKey: {win: 'Ctrl-S',  mac: 'Command-S'},
+                    exec: function(editor) {
+                        var text = editor.getValue();
+                        self.saveMapFile(tablename, text);
+                    }
+                });                
+                self.setEditorContent(res);              
             }); 
         
+        },
+        saveMapFile: function(filename,text) {
+            $.get('saveMapFile', {mapfile: filename, content: text }, function (res) {
+                
+            });
+        },
+        setEditorContent: function(content) {
+            var editor = ace.edit("editor");
+            editor.setValue(content);
+            editor.gotoLine(1);               
         },
         setOverlay: function(el, bounds) {
             var self = this;
