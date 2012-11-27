@@ -20,7 +20,6 @@ app.register("map-module", function(sandbox){
         
         handleLayerEvent: function() {
             var self = this;
-            
             $('body').on('click.map', '[data-control="layer"]', function(e) {
                 self.setMSTileOverlay($(this));
                 self.getMapFile($(this));

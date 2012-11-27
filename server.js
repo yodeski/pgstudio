@@ -13,6 +13,5 @@ site.use(express.bodyParser());
 site.use(site.router);
 require('./server/routes')(site);
 
-
 site.listen(config.port, config.host);
 console.log("Server listening on " + config.host + ":" + config.host);
