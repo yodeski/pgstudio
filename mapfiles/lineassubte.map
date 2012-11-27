@@ -1,4 +1,4 @@
-
+# layer definition
 LAYER 
   CONNECTIONTYPE postgis 
   NAME "lineassubte" 

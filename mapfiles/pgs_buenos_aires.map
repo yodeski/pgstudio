@@ -2,41 +2,43 @@
 # Start of map file
 #
 MAP
-  NAME ITASCA
-  STATUS ON
-  SIZE 600 600
-  CONFIG "MS_ERRORFILE" "/home/yodeski/sites/mapserverdemo/tmp/ms_error.txt"
-  DEBUG 0
-  UNITS METERS
-  SHAPEPATH "data"
-  TEMPLATEPATTERN "itasca"
-  TRANSPARENT ON
-  IMAGECOLOR 255 255 255
-  IMAGETYPE png
+    NAME ITASCA
+    STATUS ON
+    SIZE 600 600
+    CONFIG "MS_ERRORFILE" "/home/yodeski/sites/mapserverdemo/tmp/ms_error.txt"
+    DEBUG 0
+    UNITS METERS
+    SHAPEPATH "data"
+    TEMPLATEPATTERN "itasca"
+    TRANSPARENT ON
+    IMAGECOLOR 255 255 255
+    IMAGETYPE png
 
-OUTPUTFORMAT
-  NAME "png"
-  DRIVER AGG/PNG
-  MIMETYPE "image/png"
-  IMAGEMODE RGBA
-  EXTENSION "png"
-  FORMATOPTION "GAMMA=0.75"
-END
+    OUTPUTFORMAT
+        NAME "png"
+        DRIVER AGG/PNG
+        MIMETYPE "image/png"
+        IMAGEMODE RGBA
+        EXTENSION "png"
+        FORMATOPTION "GAMMA=0.75"
+    END
 
 
-#
-# Projection definition, consult the PROJ.4 documentation for parameter discussion
-#
-PROJECTION
-  "proj=latlong"
-  "ellps=WGS84"
-  "datum=WGS84"
-END
+    #
+    # Projection definition, consult the PROJ.4 documentation for parameter discussion
+    #
+    PROJECTION
+        "proj=latlong"
+        "ellps=WGS84"
+        "datum=WGS84"
+    END
 
-INCLUDE "lineassubte.map"
-INCLUDE "estacionessubte.map"
-INCLUDE "roads.map"
-INCLUDE "waterways.map"
-INCLUDE "landuse.map"
+    INCLUDE "lineassubte.map"
+    INCLUDE "estacionessubte.map"
+    INCLUDE "roads.map"
+    INCLUDE "waterways.map"
+    INCLUDE "landuse.map"
 
 END # Map File
+
+

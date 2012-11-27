@@ -4,11 +4,12 @@ LAYER
   NAME "roads" 
   CONNECTION "user=postgres dbname=pgs_buenos_aires password=vivirencanada host=localhost"
   PROCESSING "CLOSE_CONNECTION=DEFER"
-  DATA "the_geom from roads" 
-  TYPE LINE 
+  DATA "the_geom from roads using srid=4326 using unique gid" 
+  TYPE LINE
+  FILTER "type = 'residential'"
   CLASS 
     STYLE
-      COLOR 22 22 255 
+      COLOR 255 100 100 
       WIDTH 1 
     END
   END  
